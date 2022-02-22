@@ -17,17 +17,25 @@ public class CUser2{
 
         User user1 = new User();
         user1.setId("1");
-        user1.setfName("Jožo");
-        user1.setlName("Alvaréz");
-        user1.setEmail("j.alvarez@gmail.com");
+        user1.setfName("Boris");
+        user1.setlName("Kolár");
+        user1.setEmail("vela.potomkov@gmail.com");
         users.add(user1);
 
         User user2 = new User();
         user2.setId("2");
-        user2.setfName("Jano");
-        user2.setlName("Odvedľa");
-        user2.setEmail("odvedla@gmail.com");
+        user2.setfName("Robo");
+        user2.setlName("Kazik");
+        user2.setEmail("topspevak@gmail.com");
         users.add(user2);
+
+        User user3 = new User();
+        user2.setId("3");
+        user2.setfName("Bob");
+        user2.setlName("Bobovec");
+        user2.setEmail("bober@gmail.com");
+        users.add(user3);
+
         return users;
     }
 
