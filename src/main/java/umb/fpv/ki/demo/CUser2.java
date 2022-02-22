@@ -30,10 +30,10 @@ public class CUser2{
         users.add(user2);
 
         User user3 = new User();
-        user2.setId("3");
-        user2.setfName("Bob");
-        user2.setlName("Bobovec");
-        user2.setEmail("bober@gmail.com");
+        user3.setId("3");
+        user3.setfName("Bob");
+        user3.setlName("Bobovec");
+        user3.setEmail("bober@gmail.com");
         users.add(user3);
 
         return users;
