@@ -7,6 +7,12 @@ import java.util.List;
 
 @RestController
 public class controllerBook {
+    private BookService bookService;
+
+    public controllerBook(BookService bookService){
+        this.bookService = bookService;
+    }
+
     List<Book> books;
 
     public controllerBook(){
@@ -43,7 +49,7 @@ public class controllerBook {
     @GetMapping("/api/books")
     public List<Book> getBooks(@RequestParam(required = false) String bookAuthor){
         if (bookAuthor == null){
-            return this.books;
+            return bookService.getBooks();
         }
 
         List<Book> filteredBooks = new ArrayList<>();
