@@ -9,8 +9,8 @@ import java.util.List;
 @RestController
 public class controllerBook {
     private List<Book> books;
-    private Bookservice bookservice;
-    private controllerBook(Bookservice bookservice){
+    private BookService bookservice;
+    private controllerBook(BookService bookservice){
         this.bookservice = bookservice;
 
     }

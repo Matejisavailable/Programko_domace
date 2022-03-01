@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @Service
-public class Bookservice {
+public class BookService {
 
     private List<Book> books;
 
-    public Bookservice() {
+    public BookService() {
         this.books = init();
     }
 
