@@ -14,7 +14,6 @@ public class BorrowedService {
     public BorrowedService(){
         this.borrow = ini();
     }
-
     public List<BorrowedBooks> ini(){
         List<BorrowedBooks> borrowed = new ArrayList<>();
         BorrowedBooks borrow1 = new BorrowedBooks();
@@ -33,6 +32,9 @@ public class BorrowedService {
             }
         }
         return Borrowings;
+    }
+    public BorrowedBooks getBorrowId(int borrowingId){
+        return this.borrow.get(borrowingId);
     }
     public  List<BorrowedBooks> createBorrowing(BorrowedBooks borrowed){
         this.borrow.add(borrowed);

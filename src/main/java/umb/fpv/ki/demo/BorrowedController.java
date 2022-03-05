@@ -12,15 +12,19 @@ public class BorrowedController {
     public BorrowedController(BorrowedService borrowedService){
         this.borrowedService = borrowedService;
     }
-    @GetMapping
+    @GetMapping("/api/borrowings")
     public List<BorrowedBooks> getBorrowings(@RequestParam String borrowingId){
         return this.borrowedService.getBorrowings(borrowingId);
     }
-    @PostMapping
+    @GetMapping("/api/borrowings/{borrowingId}")
+    public BorrowedBooks getBorrowId(@PathVariable Integer borrowingId){
+        return this.borrowedService.getBorrowId(borrowingId);
+    }
+    @PostMapping("/api/borrowings")
     public  List<BorrowedBooks> createBorrowing(@RequestBody BorrowedBooks borrowed){
         return borrowedService.createBorrowing(borrowed);
     }
-    @DeleteMapping
+    @DeleteMapping("/api/borrowings/{borrowingId}")
     public void deleteBorrowing(@PathVariable Integer borrowId){
         this.borrowedService.deleteBorrowing(borrowId);
     }
