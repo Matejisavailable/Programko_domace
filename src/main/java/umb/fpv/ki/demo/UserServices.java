@@ -83,6 +83,10 @@ public class UserServices {
         return users;
     }
 
+    public User getUser(int userId){
+        return this.users.get(userId);
+    }
+
 
     public void deleteUser(Integer userId){
         this.users.remove(this.users.get(userId));

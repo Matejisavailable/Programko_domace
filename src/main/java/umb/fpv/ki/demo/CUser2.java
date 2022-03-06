@@ -23,6 +23,12 @@ public class CUser2{
         return this.userServices.getUsersId(userId);
     }
 
+    @GetMapping("/api/Users/{UserId}")
+        public User getUser(@PathVariable(required = false) Integer userId){
+        return this.userServices.getUser(userId);
+    }
+
+
     @PostMapping("/api/Users")
     public List<User> createUser(@RequestBody User user){
         return userServices.createUser(user);
