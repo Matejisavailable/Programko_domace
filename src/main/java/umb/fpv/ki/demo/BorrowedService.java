@@ -1,47 +1,56 @@
 package umb.fpv.ki.demo;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+
+
 @Service
 public class BorrowedService {
-    private List<BorrowedBooks> borrow;
+    private final BorrowedRepository borrowedRepository;
 
-    public BorrowedService(){
-        this.borrow = ini();
+    public BorrowedService(BorrowedRepository borrowedRepository){
+        this.borrowedRepository = borrowedRepository;
     }
-    public List<BorrowedBooks> ini(){
-        List<BorrowedBooks> borrowed = new ArrayList<>();
-        BorrowedBooks borrow1 = new BorrowedBooks();
-        borrow1.setBorrowId("1");
-        borrowed.add(borrow1);
-        return borrowed;
+    private static BorrowedDto pathBorrowedDto(BorrowedEntity borrowedEntity){
+        BorrowedDto borrowedDto = new BorrowedDto();
+        borrowedDto.setBookId(borrowedEntity.getBookId());
+        borrowedDto.setUserId(borrowedEntity.getUserId());
+        return borrowedDto;
     }
-    public List<BorrowedBooks> getBorrowings(String borrowingId){
-        if(borrowingId == null){
-            return this.borrow;
+    @Transactional
+    public List<BorrowedDto> getBorrowings(String borrowingId) {
+        List<BorrowedDto> ret = new LinkedList<>();
+        for (BorrowedEntity b1 : borrowedRepository.findAll()) {
+            BorrowedDto b2 = pathBorrowedDto(b1);
+            ret.add(b2);
         }
-        List<BorrowedBooks> Borrowings = new ArrayList<>();
-        for (BorrowedBooks borrow : borrow){
-            if(borrow.getBorrowId().equals(borrowingId)){
-                Borrowings.add(borrow);
-            }
+        return ret;
+    }
+    @Transactional
+    public BorrowedDto getBorrowId(String borrowingId){
+        Optional<BorrowedEntity> id = borrowedRepository.findById(borrowingId);
+        if(id.isPresent()){
+            return pathBorrowedDto(id.get());
         }
-        return Borrowings;
+        return null;
     }
-    public BorrowedBooks getBorrowId(int borrowingId){
-        return this.borrow.get(borrowingId);
+    @Transactional
+    public String createBorrowing(BorrowedDto borrowedDto){
+        BorrowedEntity borrowedEntity = new BorrowedEntity();
+        borrowedEntity.setBookId(borrowedDto.getBookId());
+        borrowedEntity.setUserId(borrowedDto.getUserId());
+        return borrowedEntity.getBorrowedId();
     }
-    public  List<BorrowedBooks> createBorrowing(BorrowedBooks borrowed){
-        this.borrow.add(borrowed);
-        return borrow;
-    }
+    @Transactional
     public void deleteBorrowing(int borrowId){
-        this.borrow.remove(this.borrow.get(borrowId));
+        Optional<BorrowedEntity> id = borrowedRepository.findById(String.valueOf(borrowId));
+        if(id.isPresent()){
+            borrowedRepository.delete(id.get());
+        }
     }
 }
 

@@ -2,27 +2,28 @@ package umb.fpv.ki.demo;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
 public class BorrowedController {
-    private List<BorrowedBooks> borrow;
+
     private BorrowedService borrowedService;
+
     public BorrowedController(BorrowedService borrowedService){
         this.borrowedService = borrowedService;
     }
     @GetMapping("/api/borrowings")
-    public List<BorrowedBooks> getBorrowings(@RequestParam String borrowingId){
+    public List<BorrowedDto> getBorrowings(@RequestParam String borrowingId){
         return this.borrowedService.getBorrowings(borrowingId);
     }
     @GetMapping("/api/borrowings/{borrowingId}")
-    public BorrowedBooks getBorrowId(@PathVariable Integer borrowingId){
+    public BorrowedDto getBorrowId(@PathVariable String borrowingId){
         return this.borrowedService.getBorrowId(borrowingId);
     }
     @PostMapping("/api/borrowings")
-    public  List<BorrowedBooks> createBorrowing(@RequestBody BorrowedBooks borrowed){
-        return borrowedService.createBorrowing(borrowed);
+    public String createBorrowing(@RequestBody BorrowedDto borrowedDto){
+        return borrowedService.createBorrowing(borrowedDto);
     }
     @DeleteMapping("/api/borrowings/{borrowingId}")
     public void deleteBorrowing(@PathVariable Integer borrowId){
