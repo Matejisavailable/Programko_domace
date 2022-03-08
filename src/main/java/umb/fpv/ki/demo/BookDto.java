@@ -1,6 +1,6 @@
 package umb.fpv.ki.demo;
 
-public class Book {
+public class BookDto {
         private String author;
         private String title;
         private String isbn;
