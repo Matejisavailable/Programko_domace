@@ -10,7 +10,6 @@ public class BookEntity {
 
     @Id
     @GeneratedValue
-
     private String author;
     private String title;
     private String isbn;

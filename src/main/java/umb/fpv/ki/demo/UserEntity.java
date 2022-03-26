@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class UserEntity {
     @Id
     @GeneratedValue
-
     private String id;
     private String fName;
     private String lName;

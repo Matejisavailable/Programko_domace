@@ -1,26 +1,26 @@
 package umb.fpv.ki.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BorrowedEntity {
     @Id
     @GeneratedValue
-    private String borrowedId;
+    private long borrowedId;
     private String bookId;
     private String userId;
 
-    public String getBorrowedId() {
+
+
+    public long getBorrowedId() {
         return borrowedId;
     }
 
-    public void setBorrowedId(String borrowedId) {
+    public void setBorrowedId(Long borrowedId) {
         this.borrowedId = borrowedId;
     }
 
-    public String getBookId() {
+   public String getBookId() {
         return bookId;
     }
 
